@@ -44,6 +44,9 @@ ADC_HandleTypeDef hadc1;
 
 UART_HandleTypeDef huart4;
 
+static int BUFFER_SIZE = 5; // Temporary size, not known yet
+static uint32_t TIMEOUT = 10;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -94,15 +97,24 @@ int main(void)
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
 
+  /* Initialize variables */
+  uint8_t buffer[BUFFER_SIZE];
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+	/* Read data */
 
-    /* USER CODE BEGIN 3 */
+	/* Prepare buffer */
+
+	/* Transmit over UART */
+    HAL_UART_Transmit(&huart4, buffer, BUFFER_SIZE, TIMEOUT);
+
+	/* Wait one second */
+	HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
